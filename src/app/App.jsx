@@ -1,9 +1,11 @@
-import './App.css'
+import Routing from '../routing/Routing'
+import './GlobalStyles/App.css'
 
 function App() {
 
   return (
     <>
+    <Routing />
     </>
   )
 }

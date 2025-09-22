@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+  	--siniy: #091d9e;
+	--fioletovyy: #750dc5;
+	--chernyy: #0c0c0c;
+	--belyy: #f6f6f6;
+	--seryy: #c1c1c1;
+	--seryy-temnee: #454545;
+	--goluboy: #bcc5ff;
+	--seryy-2-ne-takoy-temnyy: #ababab;
+	--zheltyy: #ebba1a;
+	--zelenyy: #169b00;
+	--ne-aktivnoe: #505050;
+	--pole: #dedede;
+	--krasnyy: #f00;
+	--illyustraciya-seryy: #9f9f9f;
+	--illyustraciya-fio: #43096f;
+	--illyustraciya-teni: #490081;
+}
+
+
+body {
+    font-family: 'Roboto';
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+button, input {
+	outline: none;
+	border: none;
+}
+
+inputL:focus {
+	 outline: none;
+}
+
+.main {
+	height: 100vh;
+}
