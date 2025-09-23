@@ -18,7 +18,6 @@ const Login = () => {
     
     try {
       const result = await loginUser({ email, password });
-      
       if (result && result.success) {
         console.log("успешный вход")
       } else {
@@ -32,6 +31,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <div className={styles.background}></div>
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <h2 className={styles.formTitle}>Вход</h2>
@@ -64,6 +65,7 @@ const Login = () => {
         <Link to={"/Registration"} className={styles.link}>Нет аккаунта? Регистрация</Link>
       </div>
     </div>
+    </>
   );
 };
 

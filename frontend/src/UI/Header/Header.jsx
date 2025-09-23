@@ -1,14 +1,21 @@
 import Button from "../Button/Button"
+import { useAuth } from '../../contexts/AuthContexts';
 import styles from "./Header.module.css"
 import { Link } from "react-router"
 
 const Header = () => {
+  const { user, token , isLoading, logout } = useAuth();
   return (
     <header className={styles.header}>
         <Link to={"/Home"}>
         <h1 className={styles.logo}>Cuttly</h1>
         </Link>
-        <nav className={styles.nav}>
+        {token ? (<div>
+                  <p>{user?.email}</p>
+                  <button onClick={logout}>выйти</button>
+                </div>) :
+                
+                        <nav className={styles.nav}>
             <ul className={styles.navList}>
                 <Link to={"/Login"} >
                    <Button text={"Войти"} width={110} height={35}/>
@@ -17,7 +24,7 @@ const Header = () => {
                     <Button text={"Регистрация"} width={140} height={35}/>
                 </Link>
             </ul>
-        </nav>
+        </nav>}
     </header>
   )
 }

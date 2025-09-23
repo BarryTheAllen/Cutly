@@ -5,12 +5,11 @@ import { useAuth } from "../../../contexts/AuthContexts";
 import { useState } from "react";
 
 const Registration = () => {
-  const { registerUser, user } = useAuth();
+  const { registerUser, isLoading } = useAuth();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e) => {
@@ -30,7 +29,6 @@ const Registration = () => {
     }
 
     if (isValid) {
-      setIsLoading(true);
       const result = await registerUser({ email, password });
       
       if (result.success) {
@@ -40,11 +38,12 @@ const Registration = () => {
       } else {
         setEmailError(result.error);
       }
-      setIsLoading(false);
     }
   };
 
   return (
+    <>
+    <div className={styles.background}></div>
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <p className={styles.formTitle}>Регистрация</p>
@@ -73,7 +72,6 @@ const Registration = () => {
             disabled={isLoading}
           />
           {passwordError && <span className={styles.error}>{passwordError}</span>}
-          
           <Button 
             text={isLoading ? "Регистрация..." : "Регистрация"} 
             width={150} 
@@ -87,6 +85,7 @@ const Registration = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 
