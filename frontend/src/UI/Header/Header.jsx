@@ -4,18 +4,18 @@ import styles from "./Header.module.css"
 import { Link } from "react-router"
 
 const Header = () => {
-  const { user, token , isLoading, logout } = useAuth();
+  const { user, isLoading, logout } = useAuth();
   return (
     <header className={styles.header}>
         <Link to={"/Home"}>
         <h1 className={styles.logo}>Cuttly</h1>
         </Link>
-        {token ? (<div>
+        {user ? (<div>
                   <p className={styles.useremail}>{user?.email}</p>
-                  <Button fn={logout} width={100} height={30} text={"Выйти"}/>
-                </div>) :
-                
-                        <nav className={styles.nav}>
+                  <Button fn={logout} width={100} height={30} text={isLoading ? "Загрузка..." : "Выйти"}/>
+                </div>)
+        :
+        <nav className={styles.nav}>
             <ul className={styles.navList}>
                 <Link to={"/Login"} >
                    <Button text={"Войти"} width={110} height={35}/>
