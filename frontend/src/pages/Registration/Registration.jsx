@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import styles from "./Registration.module.css";
-import Button from "../../../UI/Button/Button";
-import { useAuth } from "../../../contexts/AuthContexts";
+import Button from "../../UI/Button/Button";
+import { useAuth } from "../../contexts/AuthContexts";
 import { useState } from "react";
 
 const Registration = () => {

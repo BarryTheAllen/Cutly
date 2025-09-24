@@ -43,6 +43,10 @@
     padding: 0;
 }
 
+.useremail {
+    margin: 10px;
+    color: #fff;
+}
 
 @media (max-width: 768px) {
     .header {

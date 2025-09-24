@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { useAuth } from '../../../contexts/AuthContexts';
+import { useAuth } from '../../contexts/AuthContexts';
 import { Link, useNavigate } from 'react-router';
 import styles from "./Login.module.css";
-import Button from '../../../UI/Button/Button';
+import Button from '../../UI/Button/Button';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,6 +10,8 @@ const Login = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { loginUser, user } = useAuth();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +21,7 @@ const Login = () => {
     try {
       const result = await loginUser({ email, password });
       if (result && result.success) {
-        console.log("успешный вход")
+        navigate("/Home")
       } else {
         setError(result?.error || 'Произошла ошибка');
       }

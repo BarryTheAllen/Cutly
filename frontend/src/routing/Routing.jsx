@@ -1,9 +1,8 @@
-import React from 'react'
 import { Navigate, Route, Routes } from 'react-router'
 import Layout from '../layout/Layout'
 import Home from '../pages/Home/Home'
-import Registration from '../pages/Profile/Registration/Registration'
-import Login from '../pages/Profile/Login/Login'
+import Registration from '../pages/Registration/Registration'
+import Login from '../pages/Login/Login'
 
 const Routing = () => {
   return (

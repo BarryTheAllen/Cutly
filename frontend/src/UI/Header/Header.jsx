@@ -11,8 +11,8 @@ const Header = () => {
         <h1 className={styles.logo}>Cuttly</h1>
         </Link>
         {token ? (<div>
-                  <p>{user?.email}</p>
-                  <button onClick={logout}>выйти</button>
+                  <p className={styles.useremail}>{user?.email}</p>
+                  <Button fn={logout} width={100} height={30} text={"Выйти"}/>
                 </div>) :
                 
                         <nav className={styles.nav}>
