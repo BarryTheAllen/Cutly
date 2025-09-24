@@ -5,17 +5,8 @@ import { useLoginedUser } from '../../contexts/LoginedUserContexts';
 import Button from '../../UI/Button/Button';
 const Home = () => {
   const [link, setLink] = useState("");
-  const {setUserLink, createShortLink, shortLink, getShortLink} = useLoginedUser();
+  const {userLink,setUserLink, createShortLink, shortLink, getShortLink} = useLoginedUser();
 
-  const urlHandler = (value) => {
-    setLink(JSON.stringify(value))
-  }
-
-  useEffect(() => {
-    return () => {
-  setUserLink(link)
-    }
-  }, [link, setUserLink])
 
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,11 +33,19 @@ const Home = () => {
         </p>
         <Link to={"/Registration"}>Регистрация</Link>
         <form onSubmit={handleSubmit}>
-          <input type="text" value={link} onChange={e => urlHandler(e.target.value)} className={styles.createShortLink}/>
+          <input type="text" value={userLink} onChange={e => setUserLink(e.target.value)} className={styles.createShortLink}/>
           <button type='submit' style={{margin: "60px"}}>asdassdasdasdas</button>
         </form>
         <button style={{margin: "60px"}} onClick={getShortLink}>huy</button>
-        <p color='black'>{shortLink}</p>
+        {shortLink.map(item => (
+          <div key={item.id}>
+              <p>Оригинальная ссылка: {item.original_url}</p>
+              <p>Короткая ссылка: http://localhost:8000/{item.short_code}</p>
+              <p>Кликов: {item.clicks_count}</p>
+              <p>Создана: {item.created_at}</p>
+            </div>
+
+           ))}
     </div>
   )
 }

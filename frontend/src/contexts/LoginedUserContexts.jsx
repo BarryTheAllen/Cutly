@@ -13,25 +13,25 @@ const LOGINED_ENDPOINTS = {
 const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
-    const [userLink, setUserLink] = useState();
-    const [shortLink, setShortLink] = useState(null)
-
-    //  useEffect(() => {
-    //     localStorage.setItem('userLink', userLink);
-    // }, [userLink]);
-
+    const [userLink, setUserLink] = useState("");
+    const [shortLink, setShortLink] = useState([]);
     const createShortLink = async () => {
         try {
 
-            const response = await axios.post(`${API_BASE_URL}${LOGINED_ENDPOINTS.CREATE}`,
-                userLink,
+           const response = await axios.post(
+                `${API_BASE_URL}${LOGINED_ENDPOINTS.CREATE}`,
                 {
-                    withCredentials: true
+                    link:userLink
+                },
+                {
+                    withCredentials: true,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 }
-            )
-            console.log(response.data)
+            );
+
         } catch(error) {
-                console.log(error)
             }
         }
 
@@ -44,9 +44,7 @@ export const UserProvider = ({children}) => {
                 }
             )
             setShortLink(response.data)
-            console.log(response.data)
         } catch(error) {
-            console.log(error)
         }
     }
 
