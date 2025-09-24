@@ -4,13 +4,13 @@ import styles from "./Header.module.css"
 import { Link } from "react-router"
 
 const Header = () => {
-  const { user, isLoading, logout } = useAuth();
+  const { user, token, isLoading, logout } = useAuth();
   return (
     <header className={styles.header}>
         <Link to={"/Home"}>
         <h1 className={styles.logo}>Cuttly</h1>
         </Link>
-        {user ? (<div>
+        {token ? (<div>
                   <p className={styles.useremail}>{user?.email}</p>
                   <Button fn={logout} width={100} height={30} text={isLoading ? "Загрузка..." : "Выйти"}/>
                 </div>)
