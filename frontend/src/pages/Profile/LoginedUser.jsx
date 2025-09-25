@@ -1,9 +1,75 @@
 import React from 'react'
+import { useLoginedUser } from '../../contexts/LoginedUserContexts';
+import styles from "./Profile.module.css"
 
 const LoginedUser = () => {
+    const {userLink,setUserLink, createShortLink, shortLink, getShortLink} = useLoginedUser();
+  
+      const handleSubmit = async (e) => {
+      e.preventDefault();
+      await createShortLink();
+    }
+    
   return (
-    <div>LoginedUser</div>
-  )
+    <div className={styles.container}>
+        <div className={styles.header}>
+            <h1 className={styles.title}>Сокращатель ссылок</h1>
+            <p className={styles.subtitle}>Превратите длинные ссылки в короткие</p>
+        </div>
+        
+        <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.inputGroup}>
+                <input 
+                    type="text" 
+                    id="createLink"
+                    value={userLink} 
+                    onChange={e => setUserLink(e.target.value)}
+                    placeholder="Введите вашу ссылку"
+                    className={styles.createShortLink}
+                />
+                <button type="submit" className={styles.btn}>Сократить</button>
+            </div>
+        </form>
+
+        <button className={styles.secondaryBtn} onClick={getShortLink}>
+            Показать все ссылки
+        </button>
+
+        {shortLink.length > 0 && (
+            <div className={styles.linksSection}>
+                <h2 className={styles.sectionTitle}>Ваши ссылки</h2>
+                <div className={styles.linksGrid}>
+                    {shortLink.map(item => (
+                        <div key={item.id} className={styles.linkCard}>
+                            <div className={styles.linkHeader}>
+                                <span className={styles.clicksBadge}>{item.clicks_count} кликов</span>
+                                <span className={styles.date}>{new Date(item.created_at).toLocaleDateString()}</span>
+                            </div>
+                            
+                            <div className={styles.urlSection}>
+                                <label className={styles.urlLabel}>Оригинальная ссылка:</label>
+                                <p className={styles.originalUrl}>{item.original_url}</p>
+                            </div>
+                            
+                            <div className={styles.urlSection}>
+                                <label className={styles.urlLabel}>Короткая ссылка:</label>
+                                <div className={styles.shortUrlContainer}>
+                                    <code className={styles.shortUrl}>http://localhost:8000/{item.short_code}</code>
+                                    <button 
+                                        className={styles.copyBtn}
+                                        onClick={() => navigator.clipboard.writeText(`http://localhost:8000/${item.short_code}`)}
+                                    >
+                                        Копировать
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+    </div>
+)
 }
 
 export default LoginedUser
