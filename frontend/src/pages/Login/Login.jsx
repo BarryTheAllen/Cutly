@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const result = await loginUser({ email, password });
       if (result && result.success) {
-        navigate("/Logined")
+        navigate("/Profile")
       } else {
         setError(result?.error || 'Произошла ошибка');
       }

@@ -3,7 +3,7 @@ import Layout from '../layout/Layout'
 import Home from '../pages/Home/Home'
 import Registration from '../pages/Registration/Registration'
 import Login from '../pages/Login/Login'
-import LoginedUser from '../pages/Profile/LoginedUser'
+import LoginedUser from '../pages/Profile/Profile'
 
 const Routing = () => {
   return (
@@ -13,7 +13,7 @@ const Routing = () => {
             <Route path="/Home" element={<Home />} />
             <Route path="/Registration" element={<Registration />} />
             <Route path="/Login" element={<Login />} />
-            <Route path='/Logined' element={<LoginedUser />} />
+            <Route path='/Profile' element={<LoginedUser />} />
         </Route>
     </Routes>
   )

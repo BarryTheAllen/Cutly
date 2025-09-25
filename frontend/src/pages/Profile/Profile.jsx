@@ -2,7 +2,7 @@ import React from 'react'
 import { useLoginedUser } from '../../contexts/LoginedUserContexts';
 import styles from "./Profile.module.css"
 
-const LoginedUser = () => {
+const Profile = () => {
     const {userLink,setUserLink, createShortLink, shortLink, getShortLink} = useLoginedUser();
   
       const handleSubmit = async (e) => {
@@ -72,4 +72,4 @@ const LoginedUser = () => {
 )
 }
 
-export default LoginedUser
+export default Profile
