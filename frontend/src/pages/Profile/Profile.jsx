@@ -54,7 +54,7 @@ const Profile = () => {
                             <div className={styles.urlSection}>
                                 <label className={styles.urlLabel}>Короткая ссылка:</label>
                                 <div className={styles.shortUrlContainer}>
-                                    <code className={styles.shortUrl}>http://localhost:8000/{item.short_code}</code>
+                                    <code className={styles.shortUrl}>{item.short_code}</code>
                                     <button 
                                         className={styles.copyBtn}
                                         onClick={() => navigator.clipboard.writeText(`http://localhost:8000/${item.short_code}`)}

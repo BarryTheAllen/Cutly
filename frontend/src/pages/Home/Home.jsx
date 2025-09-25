@@ -1,8 +1,5 @@
 import { Link } from 'react-router'
 import styles from './Home.module.css'
-import { useEffect, useState } from 'react'
-import { useLoginedUser } from '../../contexts/LoginedUserContexts';
-import Button from '../../UI/Button/Button';
 const Home = () => {
 
   return (
