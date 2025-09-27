@@ -59,7 +59,16 @@ export const UserProvider = ({children}) => {
     } catch(error) {
         console.log('Ошибка редиректа:', error);
     }
-}
+    }
+
+    const getClicks = async () => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.GETCLICKS}`)
+        } catch {
+            console.log(error)
+        }
+    }
+
     const UserValue = {
         userLink,
         createShortLink,
