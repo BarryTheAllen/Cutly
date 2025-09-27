@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import styles from './Home.module.css'
+import Button from '../../UI/Button/Button'
 const Home = () => {
 
   return (
@@ -19,7 +20,7 @@ const Home = () => {
           управляйте,
           отслеживайте и делитесь ими без усилий.
         </p>
-        <Link to={"/Registration"}>Регистрация</Link>
+        <Link to={"/Registration"}><Button text={"Регистрация"}/></Link>
     </div>
   )
 }

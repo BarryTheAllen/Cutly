@@ -7,7 +7,7 @@ const Header = () => {
   const { user, token, isLoading, logout } = useAuth();
   return (
     <header className={styles.header}>
-        <Link to={"/Home"}>
+        <Link to={token ? "/Profile" : "/Home"}>
         <h1 className={styles.logo}>Cuttly</h1>
         </Link>
         {token ? (<div>

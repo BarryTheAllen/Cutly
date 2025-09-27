@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLoginedUser } from '../../contexts/LoginedUserContexts';
 import styles from "./Profile.module.css"
+import Button from '../../UI/Button/Button';
 
 const Profile = () => {
     const {userLink,setUserLink, createShortLink, shortLink, getShortLink} = useLoginedUser();
@@ -27,13 +28,11 @@ const Profile = () => {
                     placeholder="Введите вашу ссылку"
                     className={styles.createShortLink}
                 />
-                <button type="submit" className={styles.btn}>Сократить</button>
+                <Button type="submit" text={"Сократить"} />
             </div>
         </form>
 
-        <button className={styles.secondaryBtn} onClick={getShortLink}>
-            Показать все ссылки
-        </button>
+        <Button text={"Показать все ссылки"} fn={getShortLink} />
 
         {shortLink.length > 0 && (
             <div className={styles.linksSection}>
@@ -55,12 +54,10 @@ const Profile = () => {
                                 <label className={styles.urlLabel}>Короткая ссылка:</label>
                                 <div className={styles.shortUrlContainer}>
                                     <code className={styles.shortUrl}>{item.short_code}</code>
-                                    <button 
-                                        className={styles.copyBtn}
-                                        onClick={() => navigator.clipboard.writeText(`http://localhost:8000/${item.short_code}`)}
-                                    >
-                                        Копировать
-                                    </button>
+                                    <Button
+                                        text={"Копировать"}
+                                        fn={() => navigator.clipboard.writeText(`http://localhost:8000/${item.short_code}`)}
+                                    />
                                 </div>
                             </div>
                         </div>

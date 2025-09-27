@@ -3,28 +3,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 32px;
-    background: linear-gradient(141deg,rgba(176, 106, 106, 1) 0%, rgba(52, 18, 138, 1) 67%);
-    box-shadow: 0 4px 20px rgba(50, 205, 50, 0.3);
+    background: #ffffff;
     position: sticky;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
 .logo {
     font-size: 40px;
     font-weight: 700;
-    color: white;
+    background: linear-gradient(141deg, rgba(30, 13, 77, 1) 0%, rgba(131, 85, 154, 1) 38%, rgba(160, 106, 176, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-decoration: none;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     letter-spacing: -1px;
 }
 
 .logo:hover {
     transform: scale(1.05);
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
 }
 
 .nav {
@@ -43,9 +42,11 @@
     padding: 0;
 }
 
+
 .useremail {
     margin: 10px;
-    color: #fff;
+    color: #333;
+    font-weight: 500;
 }
 
 @media (max-width: 768px) {
@@ -65,7 +66,7 @@
     
     .navList a {
         padding: 10px 20px;
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 
@@ -84,6 +85,12 @@
         flex-direction: column;
         gap: 12px;
         width: 100%;
+    }
+    
+    .navList a {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
     }
 }
 

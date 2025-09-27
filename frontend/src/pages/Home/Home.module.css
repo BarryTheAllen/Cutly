@@ -10,15 +10,6 @@
   overflow: hidden;
 }
 
-.home::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(50, 205, 50, 0.4), transparent);
-}
 
 .preTitle {
   font-size: 18px;
@@ -61,44 +52,7 @@
   font-weight: 400;
 }
 
-.home a {
-  display: inline-block;
-  padding: 16px 40px;
-  background: linear-gradient(141deg, rgba(176, 106, 106, 1) 0%, rgba(52, 18, 138, 1) 67%);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 18px;
-  border-radius: 50px;
-  box-shadow: 0 8px 25px rgba(52, 18, 138, 0.3);
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
 
-.home a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(141deg, rgba(52, 18, 138, 1) 0%, rgba(176, 106, 106, 1) 67%);
-  transition: all 0.6s ease;
-  z-index: -1;
-}
-
-.home a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(52, 18, 138, 0.4);
-}
-
-.home a:hover::before {
-  left: 0;
-}
 
 @keyframes fadeInUp {
   from {
@@ -142,10 +96,6 @@
     padding: 0 20px;
   }
   
-  .home a {
-    padding: 14px 32px;
-    font-size: 16px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -168,10 +118,4 @@
     padding: 0 10px;
   }
   
-  .home a {
-    padding: 12px 28px;
-    font-size: 15px;
-    width: 100%;
-    max-width: 280px;
-  }
 }
