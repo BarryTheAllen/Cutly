@@ -1,8 +1,23 @@
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import styles from './Home.module.css'
 import Button from '../../UI/Button/Button'
+import { useAuth } from '../../contexts/AuthContexts';
+import { useEffect } from 'react';
 const Home = () => {
+   const { loginUser, user } = useAuth();
+  const navigate = useNavigate();
 
+  const redirectToProfile = () => {
+     if(user) {
+      navigate("/Profile")
+    } else if(!user) {
+      navigate("/Home")
+    }
+  }
+
+  useEffect(() => {
+    redirectToProfile()
+  }, [user])
   return (
     <div className={styles.home}>
         <span className={styles.preTitle}>URL Сокращатель</span>

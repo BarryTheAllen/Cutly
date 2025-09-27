@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLoginedUser } from '../../contexts/LoginedUserContexts';
 import styles from "./Profile.module.css"
 import Button from '../../UI/Button/Button';
+import { useNavigate } from 'react-router';
+import { useAuth } from '../../contexts/AuthContexts';
 
 const Profile = () => {
-    const {userLink,setUserLink, createShortLink, shortLink, getShortLink} = useLoginedUser();
+    const { userLink,setUserLink, createShortLink, shortLink, getShortLink, shortLinkRedirect } = useLoginedUser();
   
+
+        const { loginUser, user } = useAuth();
+        const navigate = useNavigate();
+
+        const redirectToProfile = () => {
+            if(user) {
+            navigate("/Profile")
+            } else if(!user) {
+            navigate("/Home")
+            }
+        }
+
+        useEffect(() => {
+            redirectToProfile()
+        }, [user])
+
       const handleSubmit = async (e) => {
       e.preventDefault();
       await createShortLink();
@@ -53,7 +71,7 @@ const Profile = () => {
                             <div className={styles.urlSection}>
                                 <label className={styles.urlLabel}>Короткая ссылка:</label>
                                 <div className={styles.shortUrlContainer}>
-                                    <code className={styles.shortUrl}>{item.short_code}</code>
+                                    <code className={styles.shortUrl} onClick={() => shortLinkRedirect(item.short_code)}>{item.short_code}</code>
                                     <Button
                                         text={"Копировать"}
                                         fn={() => navigator.clipboard.writeText(`http://localhost:8000/${item.short_code}`)}

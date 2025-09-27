@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from 'react';
 
 const API_BASE_URL = 'http://localhost:8000';
 
-const LOGINED_ENDPOINTS = {
+const ENDPOINTS = {
     CREATE: "/links/create",
     SHORTLINKS: "/links",
     GETCLICKS: "/clicks"
@@ -19,7 +19,7 @@ export const UserProvider = ({children}) => {
         try {
 
            const response = await axios.post(
-                `${API_BASE_URL}${LOGINED_ENDPOINTS.CREATE}`,
+                `${API_BASE_URL}${ENDPOINTS.CREATE}`,
                 {
                     link:userLink
                 },
@@ -38,7 +38,7 @@ export const UserProvider = ({children}) => {
     const getShortLink = async () => {
         try {
             const response = await axios.get(
-                `${API_BASE_URL}${LOGINED_ENDPOINTS.SHORTLINKS}`,
+                `${API_BASE_URL}${ENDPOINTS.SHORTLINKS}`,
                 {
                     withCredentials: true
                 }
@@ -46,14 +46,27 @@ export const UserProvider = ({children}) => {
             setShortLink(response.data)
         } catch(error) {
         }
-    }
 
+    }
+    const shortLinkRedirect = async (shortedlink) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.SHORTLINKS}/${shortedlink}`);
+        
+        const redirectUrl = response.data._headers.location;
+        
+        window.location.href = redirectUrl;
+        
+    } catch(error) {
+        console.log('Ошибка редиректа:', error);
+    }
+}
     const UserValue = {
         userLink,
         createShortLink,
         getShortLink,
+        shortLinkRedirect,
         shortLink,
-        setUserLink,
+        setUserLink
     };
     return (
     <UserContext.Provider value={UserValue}>
@@ -63,4 +76,4 @@ export const UserProvider = ({children}) => {
 };
 
 
-export const useLoginedUser = () => useContext(UserContext);
+export const useLoginedUser = () => useContext(UserContext);    
