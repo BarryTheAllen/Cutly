@@ -52,7 +52,7 @@ export const UserProvider = ({children}) => {
     try {
         const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.SHORTLINKS}/${shortedlink}`);
         
-        const redirectUrl = response.data._headers.location;
+        const redirectUrl = response.data.raw_headers.location;
         
         window.location.href = redirectUrl;
         
@@ -61,13 +61,14 @@ export const UserProvider = ({children}) => {
     }
     }
 
-    const getClicks = async () => {
-        try {
-            const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.GETCLICKS}`)
-        } catch {
-            console.log(error)
-        }
-    }
+    // const getClicks = async () => {
+    //     try {
+    //         const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.GETCLICKS}`)
+    //         const 
+    //     } catch {
+    //         console.log(error)
+    //     }
+    // }
 
     const UserValue = {
         userLink,

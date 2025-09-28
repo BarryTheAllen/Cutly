@@ -67,15 +67,14 @@ const Profile = () => {
                                 <label className={styles.urlLabel}>Оригинальная ссылка:</label>
                                 <p className={styles.originalUrl}>{item.original_url}</p>
                             </div>
-                            
                             <div className={styles.urlSection}>
                                 <label className={styles.urlLabel}>Короткая ссылка:</label>
                                 <div className={styles.shortUrlContainer}>
                                     <code className={styles.shortUrl} onClick={() => shortLinkRedirect(item.short_code)}>{item.short_code}</code>
-                                    <Button
+                                    {/* <Button
                                         text={"Копировать"}
-                                        fn={() => navigator.clipboard.writeText(`http://localhost:8000/${item.short_code}`)}
-                                    />
+                                        fn={() => shortLinkRedirect(item.))}
+                                    /> */}
                                 </div>
                             </div>
                         </div>
