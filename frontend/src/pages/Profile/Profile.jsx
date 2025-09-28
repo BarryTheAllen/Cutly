@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContexts';
 
 const Profile = () => {
     const { userLink,setUserLink, createShortLink, shortLink, getShortLink, shortLinkRedirect } = useLoginedUser();
-  
+  const API_BASE_URL = 'http://localhost:8000';
 
         const { loginUser, user } = useAuth();
         const navigate = useNavigate();
@@ -70,11 +70,15 @@ const Profile = () => {
                             <div className={styles.urlSection}>
                                 <label className={styles.urlLabel}>Короткая ссылка:</label>
                                 <div className={styles.shortUrlContainer}>
-                                    <code className={styles.shortUrl} onClick={() => shortLinkRedirect(item.short_code)}>{item.short_code}</code>
-                                    {/* <Button
-                                        text={"Копировать"}
-                                        fn={() => shortLinkRedirect(item.))}
-                                    /> */}
+                                    <code 
+                                    className={styles.shortUrl} 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        window.open(`${API_BASE_URL}/links/${item.short_code}`, '_blank');
+                                    }}
+                                    >
+                                    {item.short_code}
+                                    </code>
                                 </div>
                             </div>
                         </div>

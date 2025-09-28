@@ -48,33 +48,12 @@ export const UserProvider = ({children}) => {
         }
 
     }
-    const shortLinkRedirect = async (shortedlink) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.SHORTLINKS}/${shortedlink}`);
-        
-        const redirectUrl = response.data.raw_headers.location;
-        
-        window.location.href = redirectUrl;
-        
-    } catch(error) {
-        console.log('Ошибка редиректа:', error);
-    }
-    }
-
-    // const getClicks = async () => {
-    //     try {
-    //         const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.GETCLICKS}`)
-    //         const 
-    //     } catch {
-    //         console.log(error)
-    //     }
-    // }
-
     const UserValue = {
         userLink,
+        API_BASE_URL,
+        ENDPOINTS,
         createShortLink,
         getShortLink,
-        shortLinkRedirect,
         shortLink,
         setUserLink
     };
