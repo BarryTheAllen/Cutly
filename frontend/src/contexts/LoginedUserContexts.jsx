@@ -7,7 +7,7 @@ const API_BASE_URL = 'http://localhost:8000';
 const ENDPOINTS = {
     CREATE: "/links/create",
     SHORTLINKS: "/links",
-    GETCLICKS: "/clicks"
+    GETCLICKS: "/click"
 };
 
 const UserContext = createContext();
@@ -15,6 +15,8 @@ const UserContext = createContext();
 export const UserProvider = ({children}) => {
     const [userLink, setUserLink] = useState("");
     const [shortLink, setShortLink] = useState([]);
+    const [clicks, setClicks ] = useState([]);
+
     const createShortLink = async () => {
         try {
 
@@ -30,28 +32,46 @@ export const UserProvider = ({children}) => {
                     }
                 }
             );
-
         } catch(error) {
             }
         }
 
     const getShortLink = async () => {
         try {
-            const response = await axios.get(
+            const responseLinks = await axios.get(
                 `${API_BASE_URL}${ENDPOINTS.SHORTLINKS}`,
                 {
                     withCredentials: true
                 }
             )
-            setShortLink(response.data)
+            
+            setShortLink(responseLinks.data)
+            setLinkId(responseLinks.data.id)
         } catch(error) {
+
         }
 
     }
+
+    const getClicks = async () => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}${ENDPOINTS.GETCLICKS}`,
+                {
+                    withCredentials: true
+                }
+            )
+            setClicks(response.data)
+        } catch(error) {
+
+        }
+    }
+
     const UserValue = {
         userLink,
         API_BASE_URL,
         ENDPOINTS,
+        getClicks,
+        clicks,
         createShortLink,
         getShortLink,
         shortLink,

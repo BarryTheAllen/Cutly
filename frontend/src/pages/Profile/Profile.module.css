@@ -20,9 +20,7 @@
 .title {
     font-size: 40px;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: rgba(52, 18, 138, 1);
     background-clip: text;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -32,9 +30,7 @@
 .subtitle {
     font-size: 20px;
     font-weight: 700;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: rgba(52, 18, 138, 1);
     background-clip: text;
     text-decoration: none;
     transition: all 0.3s ease;
@@ -72,6 +68,10 @@
 }
 
 .linksSection {
+    display: none;
+}
+
+.linksSection.active {
     background: #f8f9fa;
     border-radius: 25px;
     padding: 40px;
@@ -82,12 +82,9 @@
 
 .sectionTitle {
     font-size: 2rem;
-    margin-bottom: 30px;
     text-align: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 30px;
+    color: rgba(52, 18, 138, 1);
 }
 
 .linksGrid {
@@ -115,7 +112,7 @@
 }
 
 .clicksBadge {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(141deg, rgba(176, 106, 106, 1) 0%, rgba(52, 18, 138, 1) 67%);
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
@@ -172,6 +169,30 @@
 .showAllBtn {
     display: block;
     margin: 0 auto 50px;
+}
+
+.btn {
+    display: none;
+}
+
+.btnActive {
+    display: flex;
+    background: linear-gradient(141deg, rgba(176, 106, 106, 1) 0%, rgba(52, 18, 138, 1) 67%);
+    width: 150px;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: all .2s ease-in-out;
+}
+
+.btnActive:hover {
+    box-shadow: 0 12px 35px rgba(52, 18, 138, 0.4);
+    transform: scale(1.03);
 }
 
 @media (max-width: 768px) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLoginedUser } from '../../contexts/LoginedUserContexts';
 import styles from "./Profile.module.css"
 import Button from '../../UI/Button/Button';
@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router';
 import { useAuth } from '../../contexts/AuthContexts';
 
 const Profile = () => {
-    const { userLink,setUserLink, createShortLink, shortLink, getShortLink, shortLinkRedirect } = useLoginedUser();
+    const { userLink,setUserLink, createShortLink, shortLink, getShortLink, deleteLink, getClicks, clicks } = useLoginedUser();
+    const [active, setActive] = useState(false);
   const API_BASE_URL = 'http://localhost:8000';
 
         const { loginUser, user } = useAuth();
@@ -28,7 +29,13 @@ const Profile = () => {
       e.preventDefault();
       await createShortLink();
     }
-    
+
+    const getShortLinks = () => {
+        setActive(true);
+        getShortLink()
+    }
+       
+
   return (
     <div className={styles.container}>
         <div className={styles.header}>
@@ -49,11 +56,11 @@ const Profile = () => {
                 <Button type="submit" text={"Сократить"} />
             </div>
         </form>
-
-        <Button text={"Показать все ссылки"} fn={getShortLink} />
+         <Button text={"Показать все ссылки"} fn={getShortLinks} />
 
         {shortLink.length > 0 && (
-            <div className={styles.linksSection}>
+             <>
+            <div className={active ? "active": styles.linksSection}>
                 <h2 className={styles.sectionTitle}>Ваши ссылки</h2>
                 <div className={styles.linksGrid}>
                     {shortLink.map(item => (
@@ -85,7 +92,18 @@ const Profile = () => {
                     ))}
                 </div>
             </div>
+            <button onClick={() => setActive(false)} className={active ? styles.btnActive: styles.btn}>Скрыть</button>
+           </>
         )}
+        <Button text={"Показать клики"} fn={getClicks} />
+        {clicks.map(item => (
+            <div key={item.id}>
+            <p>{item.id}</p>
+            <p>{item.link_id}</p>
+            <p>{item.ip_address}</p>
+            <p>{item.clicked_at}</p>
+            </div>
+        ))}
     </div>
 )
 }
