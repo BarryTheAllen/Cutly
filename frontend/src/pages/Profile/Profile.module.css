@@ -195,6 +195,22 @@
     transform: scale(1.03);
 }
 
+.clicks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 20px;
+    box-shadow: 0 0 30px 7px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    color: #000;
+    font-weight: 500;
+    font-family: "Roboto";
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 20px 15px;

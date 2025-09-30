@@ -97,11 +97,11 @@ const Profile = () => {
         )}
         <Button text={"Показать клики"} fn={getClicks} />
         {clicks.map(item => (
-            <div key={item.id}>
-            <p>{item.id}</p>
-            <p>{item.link_id}</p>
-            <p>{item.ip_address}</p>
-            <p>{item.clicked_at}</p>
+            <div key={item.id} className={styles.clicks}>
+            <p className={styles.linkId}>ID: {item.id}</p>
+            <p className={styles.linkId}>ID ссылки: {item.link_id}</p>
+            <p className={styles.ipAddress}>IP Адресс: {item.ip_address}</p>
+            <p className={styles.clickedAt}>Время нажатия: {item.clicked_at}</p>
             </div>
         ))}
     </div>
