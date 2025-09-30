@@ -71,8 +71,12 @@
     display: none;
 }
 
-.linksSection.active {
+.activeLinks {
+    display: flex;
     background: #f8f9fa;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 25px;
     padding: 40px;
     margin-top: 30px;
@@ -96,7 +100,7 @@
     background: white;
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s ease;
     border: 1px solid #e9ecef;
 }
@@ -177,6 +181,7 @@
 
 .btnActive {
     display: flex;
+    margin: 20px;
     background: linear-gradient(141deg, rgba(176, 106, 106, 1) 0%, rgba(52, 18, 138, 1) 67%);
     width: 150px;
     height: 30px;
@@ -196,6 +201,9 @@
 }
 
 .clicks {
+    display: none;
+}
+.activeClicks {
     display: flex;
     flex-direction: column;
     justify-content: center;

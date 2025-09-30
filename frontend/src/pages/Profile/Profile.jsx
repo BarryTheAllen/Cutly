@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import clsx from 'clsx';
 import { useLoginedUser } from '../../contexts/LoginedUserContexts';
 import styles from "./Profile.module.css"
 import Button from '../../UI/Button/Button';
@@ -7,7 +8,8 @@ import { useAuth } from '../../contexts/AuthContexts';
 
 const Profile = () => {
     const { userLink,setUserLink, createShortLink, shortLink, getShortLink, deleteLink, getClicks, clicks } = useLoginedUser();
-    const [active, setActive] = useState(false);
+    const [activeLinks, setActiveLinks] = useState(false);
+    const [activeClicks, setActiveClicks] = useState(false);
   const API_BASE_URL = 'http://localhost:8000';
 
         const { loginUser, user } = useAuth();
@@ -30,9 +32,14 @@ const Profile = () => {
       await createShortLink();
     }
 
-    const getShortLinks = () => {
-        setActive(true);
+    const getShortLinksHandler = () => {
+        setActiveLinks(true);
         getShortLink()
+    }
+
+    const getClicksHandler = () => {
+        setActiveClicks(true);
+        getClicks()
     }
        
 
@@ -56,11 +63,11 @@ const Profile = () => {
                 <Button type="submit" text={"Сократить"} />
             </div>
         </form>
-         <Button text={"Показать все ссылки"} fn={getShortLinks} />
+         <Button text={"Показать все ссылки"} fn={getShortLinksHandler} />
 
         {shortLink.length > 0 && (
              <>
-            <div className={active ? "active": styles.linksSection}>
+            <div className={clsx(styles.linksSection, { [styles.activeLinks]: activeLinks })}>
                 <h2 className={styles.sectionTitle}>Ваши ссылки</h2>
                 <div className={styles.linksGrid}>
                     {shortLink.map(item => (
@@ -91,19 +98,29 @@ const Profile = () => {
                         </div>
                     ))}
                 </div>
+            <button onClick={() => setActiveLinks(false)} className={activeLinks ? styles.btnActive: styles.btn}>Скрыть</button>
             </div>
-            <button onClick={() => setActive(false)} className={active ? styles.btnActive: styles.btn}>Скрыть</button>
            </>
         )}
-        <Button text={"Показать клики"} fn={getClicks} />
-        {clicks.map(item => (
-            <div key={item.id} className={styles.clicks}>
+        <Button text={"Показать клики"} fn={getClicksHandler} />
+        <>
+        {clicks.length > 0 && (
+            <>
+            {clicks.map(item => (
+            <div key={item.id}>
+            <div className={clsx(styles.clicks, { [styles.activeClicks]: activeClicks })}>
             <p className={styles.linkId}>ID: {item.id}</p>
             <p className={styles.linkId}>ID ссылки: {item.link_id}</p>
             <p className={styles.ipAddress}>IP Адресс: {item.ip_address}</p>
             <p className={styles.clickedAt}>Время нажатия: {item.clicked_at}</p>
             </div>
-        ))}
+            </div>
+            ))}
+            <button onClick={() => setActiveClicks(false)} className={activeClicks ? styles.btnActive: styles.btn}>Скрыть</button>
+            </>
+        )}
+        </>
+
     </div>
 )
 }
