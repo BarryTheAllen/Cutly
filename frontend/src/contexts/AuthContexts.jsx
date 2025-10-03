@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+   useEffect(() => {
     checkAuth();
   }, []);
 
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { 
         success: false, 
-        error: error.response?.data?.detail || 'Ошибка регистрации' 
+        error: 'Ошибка регистрации' 
       };
     }
   };

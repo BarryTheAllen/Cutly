@@ -18,10 +18,10 @@ const Header = () => {
         <nav className={styles.nav}>
             <ul className={styles.navList}>
                 <Link to={"/Login"} >
-                   <Button text={"Войти"} width={110} height={35}/>
+                   <Button text={"Войти"}/>
                 </Link>
                 <Link to={"/Registration"}>
-                    <Button text={"Регистрация"} width={140} height={35}/>
+                    <Button text={"Регистрация"}/>
                 </Link>
             </ul>
         </nav>}

@@ -14,23 +14,30 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
-    
-    try {
-      const result = await loginUser({ email, password });
-      if (result && result.success) {
-        navigate("/Profile")
-      } else {
-        setError(result?.error || 'Произошла ошибка');
-      }
-    } catch (error) {
-      setError('Ошибка при входе');
-    } finally {
-      setIsLoading(false);
+  e.preventDefault();
+  setError('');
+  setIsLoading(true);
+  
+  try {
+    if (!email || !password) {
+      setError('Пожалуйста, заполните все поля');
+      return;
     }
-  };
+
+    const result = await loginUser({ email, password });
+    
+    if (result?.success) {
+      navigate("/Profile");
+    } else {
+      setError(result?.error || 'Произошла ошибка при входе');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    setError('Ошибка при входе. Проверьте подключение к интернету.');
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <>

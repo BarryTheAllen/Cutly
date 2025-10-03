@@ -36,10 +36,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 32px;
     list-style: none;
-    margin: 0;
-    padding: 0;
+}
+
+.nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
 }
 
 
@@ -50,30 +54,36 @@
 }
 
 @media (max-width: 768px) {
-    .header {
-        padding: 16px;
+
+    .nav {
         flex-direction: column;
-        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .navList {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     
     .logo {
         font-size: 32px;
     }
-    
-    .navList {
-        gap: 16px;
-    }
-    
+       
     .navList a {
-        padding: 10px 20px;
         font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
     .header {
-        padding: 12px;
-        margin: 10px;
         border-radius: 15px;
     }
     
@@ -83,14 +93,12 @@
     
     .navList {
         flex-direction: column;
-        gap: 12px;
         width: 100%;
     }
     
     .navList a {
         width: 100%;
         text-align: center;
-        padding: 12px 20px;
     }
 }
 
